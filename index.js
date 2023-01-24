@@ -60,6 +60,7 @@ const run = async () => {
             messageEl.innerText = msg;
 
             if (socket2){
+                console.log("connection with socket2 established");
                 socket2.send(JSON.stringify(msg));
             }
         };
