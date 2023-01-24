@@ -58,8 +58,10 @@ const run = async () => {
                 }
             }
             messageEl.innerText = msg;
-            socket2.send(JSON.stringify(msg));
 
+            if (socket2){
+                socket2.send(JSON.stringify(msg));
+            }
         };
 
 
