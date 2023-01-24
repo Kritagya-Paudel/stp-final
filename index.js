@@ -8,6 +8,7 @@ messageEl.style.display = 'none';
 let isRecording = false;
 let socket;
 let recorder;
+let socket2;
 
 const run = async () => {
     isRecording = !isRecording;
@@ -41,6 +42,7 @@ const run = async () => {
 
         // establish wss with AssemblyAI at 16000 sample rate
         socket = new WebSocket(`wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000&token=${token}`);
+        socket2 = new WebSocket('ws://192.168.1.71');
 
         // handle incoming messages to display transcription to the DOM
         const texts = {};
@@ -56,7 +58,10 @@ const run = async () => {
                 }
             }
             messageEl.innerText = msg;
+            socket2.send(JSON.stringify(msg));
+
         };
+
 
         // handle error
         socket.onerror = (event) => {
