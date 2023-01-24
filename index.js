@@ -8,7 +8,7 @@ messageEl.style.display = 'none';
 let isRecording = false;
 let socket;
 let recorder;
-let socket2;
+let arduinoSocket;
 
 const run = async () => {
     isRecording = !isRecording;
@@ -57,12 +57,12 @@ const run = async () => {
                 }
             }
             messageEl.innerText = msg;
-            
-            socket2 = new WebSocket('ws://192.168.1.71');
 
-            if (socket2){
-                console.log("connection with socket2 established");
-                socket2.send(JSON.stringify(msg));
+            arduinoSocket = new WebSocket('ws://192.168.1.71');
+
+            if (arduinoSocket){
+                console.log("connection with arduinoSocket established");
+                arduinoSocket.send(JSON.stringify(msg));
             }
         };
 
