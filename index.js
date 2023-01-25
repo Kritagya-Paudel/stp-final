@@ -42,6 +42,7 @@ const run = async () => {
 
         // establish wss with AssemblyAI at 16000 sample rate
         socket = new WebSocket(`wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000&token=${token}`);
+        arduinoSocket = new WebSocket('ws://192.168.1.71');
 
         // handle incoming messages to display transcription to the DOM
         const texts = {};
@@ -58,7 +59,6 @@ const run = async () => {
             }
             messageEl.innerText = msg;
 
-            arduinoSocket = new WebSocket('ws://192.168.1.71');
 
             if (arduinoSocket){
                 console.log("connection with arduinoSocket established");
