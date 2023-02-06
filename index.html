@@ -113,16 +113,29 @@ const run = async () => {
             for (const key of keys) {
                 if (texts[key]) {
                     msg += ` ${texts[key]}`;
+                    if (msg.length > 140){
+                      msg = msg.slice(140)
+                    }
                 }
             }
             messageEl.innerText = msg;
 
-            // Get a reference to the database
+            var msgLen = msg.length
+            
+            console.log(msg.length);
+
+              // Get a reference to the database
             var database = firebase.database();
 
-            // Send a message to the database
             var messageRef = database.ref("message");
             messageRef.set(msg);
+
+              // Send a message to the database
+ 
+
+
+
+            //messageRef.set(msg);
 
             // socketio.emit('data', { data: 'hello from JavaScript' });
             // arduinoSocket.onopen = () => arduinoSocket.send(JSON.stringify(msg));
