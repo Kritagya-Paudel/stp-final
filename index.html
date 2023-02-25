@@ -113,8 +113,8 @@ const run = async () => {
             for (const key of keys) {
                 if (texts[key]) {
                     msg += ` ${texts[key]}`;
-                    if (msg.length > 140){
-                      msg = msg.slice(140)
+                    if (msg.length > 84){
+                      msg = msg.slice(84)
                     }
                 }
             }
